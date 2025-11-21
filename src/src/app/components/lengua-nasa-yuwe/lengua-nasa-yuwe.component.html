@@ -1,0 +1,101 @@
+<div class="space-y-8">
+  <div class="text-center mb-6">
+    <div class="flex justify-center mb-4">
+      <svg class="w-16 h-16 text-orange-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+      </svg>
+    </div>
+    <h2 class="text-orange-800">NASA YUWE - NUESTRA VOZ</h2>
+  </div>
+
+  <div class="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-orange-700 shadow-md">
+    <h3 class="text-orange-800 mb-4">Palabras básicas para comenzar:</h3>
+  </div>
+
+  <!-- Vocabulary Table -->
+  <div class="overflow-x-auto shadow-lg rounded-lg">
+    <table class="w-full bg-white">
+      <thead class="bg-gradient-to-r from-orange-700 to-amber-600 text-white">
+        <tr>
+          <th class="p-4 text-left">Español</th>
+          <th class="p-4 text-left">Nasa Yuwe</th>
+          <th class="p-4 text-left">Pronunciación</th>
+          <th class="p-4 text-center">Audio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of vocabulary" class="border-b hover:bg-orange-50 transition-colors">
+          <td class="p-4">{{item.spanish}}</td>
+          <td class="p-4 text-orange-700">{{item.nasaYuwe}}</td>
+          <td class="p-4 text-gray-600 italic">{{item.pronunciation}}</td>
+          <td class="p-4 text-center">
+            <button
+              (click)="playAudio(item)"
+              [disabled]="isPlaying(item)"
+              [class]="isPlaying(item) 
+                ? 'inline-flex items-center gap-2 px-3 py-1.5 rounded bg-gray-400 text-white cursor-not-allowed text-sm' 
+                : 'inline-flex items-center gap-2 px-3 py-1.5 rounded bg-orange-700 text-white hover:bg-orange-800 transition-colors cursor-pointer text-sm'">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+              </svg>
+              {{isPlaying(item) ? 'Reproduciendo...' : 'Escuchar'}}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QR Code Section -->
+  <div class="bg-gradient-to-br from-orange-100 to-amber-100 p-6 shadow-lg rounded-lg">
+    <div class="flex flex-col md:flex-row items-center gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <svg class="w-24 h-24 text-orange-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+        </svg>
+      </div>
+      <div>
+        <p class="text-orange-900">
+          <strong>Escanea el código QR</strong> para acceder a las pronunciaciones en audio
+        </p>
+        <p class="text-orange-700 mt-2 italic">
+          (Audio de pronunciación - próximamente disponible)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Symbols Section -->
+  <div class="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg shadow-md">
+    <h3 class="text-orange-800 mb-4 text-center">Símbolos y Representaciones NASA</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+        <div class="text-4xl mb-2">☀️</div>
+        <p class="text-orange-700">Wejxa (Sol)</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+        <div class="text-4xl mb-2">🌙</div>
+        <p class="text-orange-700">A' (Luna)</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+        <div class="text-4xl mb-2">💧</div>
+        <p class="text-orange-700">We' (Agua)</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+        <div class="text-4xl mb-2">🌍</div>
+        <p class="text-orange-700">Yu' (Tierra)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Phrase -->
+  <div class="bg-gradient-to-r from-orange-700 to-amber-600 text-white p-8 rounded-lg shadow-lg">
+    <h4 class="text-center mb-4">Frase del día:</h4>
+    <p class="text-center text-2xl mb-2">
+      "Pura we' fxi'zenxi yu' we'sx"
+    </p>
+    <p class="text-center text-amber-100 italic">
+      (Gracias por los saberes de la tierra)
+    </p>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-orange-800 to-amber-700 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-center">YU' WE'SX - SABERES DE NUESTROS MAYORES</h1>
+      <p class="text-center text-amber-100 mt-2">
+        Cartilla Digital del Resguardo Indígena La Gaitana
+      </p>
+    </div>
+  </header>
+
+  <!-- Page Navigation Tabs -->
+  <nav class="bg-white shadow-md sticky top-[104px] z-40">
+    <div class="container mx-auto px-4 py-3 overflow-x-auto">
+      <div class="flex gap-2 min-w-max">
+        <button
+          *ngFor="let page of pages; let i = index"
+          (click)="goToPage(i)"
+          [class]="currentPage === i 
+            ? 'px-4 py-2 rounded bg-orange-700 text-white hover:bg-orange-800 transition-colors' 
+            : 'px-4 py-2 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors'">
+          {{page.id}}. {{page.title}}
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+      <div class="p-6 md:p-8 lg:p-12">
+        <app-introduccion *ngIf="currentPageComponent === 'introduccion'"></app-introduccion>
+        <app-origen-nasa *ngIf="currentPageComponent === 'origen-nasa'"></app-origen-nasa>
+        <app-lengua-nasa-yuwe *ngIf="currentPageComponent === 'lengua-nasa-yuwe'"></app-lengua-nasa-yuwe>
+        <app-medicina-diarrea *ngIf="currentPageComponent === 'medicina-diarrea'"></app-medicina-diarrea>
+        <app-medicina-fiebre *ngIf="currentPageComponent === 'medicina-fiebre'"></app-medicina-fiebre>
+        <app-uso-animal *ngIf="currentPageComponent === 'uso-animal'"></app-uso-animal>
+        <app-ritualidad *ngIf="currentPageComponent === 'ritualidad'"></app-ritualidad>
+        <app-historias *ngIf="currentPageComponent === 'historias'"></app-historias>
+        <app-cronologia *ngIf="currentPageComponent === 'cronologia'"></app-cronologia>
+        <app-agradecimientos *ngIf="currentPageComponent === 'agradecimientos'"></app-agradecimientos>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="bg-gradient-to-r from-orange-100 to-amber-100 px-6 py-4 flex justify-between items-center border-t">
+        <button
+          (click)="goToPreviousPage()"
+          [disabled]="currentPage === 0"
+          [class]="currentPage === 0 
+            ? 'flex items-center gap-2 px-4 py-2 rounded border border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'flex items-center gap-2 px-4 py-2 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer'">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Página Anterior
+        </button>
+        
+        <span class="text-orange-800">
+          Página {{currentPage + 1}} de {{pages.length}}
+        </span>
+        
+        <button
+          (click)="goToNextPage()"
+          [disabled]="currentPage === pages.length - 1"
+          [class]="currentPage === pages.length - 1 
+            ? 'flex items-center gap-2 px-4 py-2 rounded bg-gray-400 text-gray-200 cursor-not-allowed' 
+            : 'flex items-center gap-2 px-4 py-2 rounded bg-orange-700 text-white hover:bg-orange-800 transition-colors cursor-pointer'">
+          Página Siguiente
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-orange-900 to-amber-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>© Resguardo Indígena La Gaitana, 2025</p>
+      <p class="text-amber-200 mt-2">
+        El conocimiento aquí compartido es propiedad colectiva de nuestra comunidad
+      </p>
+    </div>
+  </footer>
+</div>
